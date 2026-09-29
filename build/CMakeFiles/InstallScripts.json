@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/rudolfkalman/projects/game_engine/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

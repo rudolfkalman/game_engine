@@ -1,0 +1,427 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage[margin=25mm]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning}
+
+\title{透視投影と Projection Matrix の導出}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{投影の種類}
+
+3次元空間を2次元のスクリーンへ写す方法として、主に次の2種類がある。
+
+\begin{itemize}
+  \item \textbf{平行投影}: 投射線が互いに平行。遠近による大きさの変化がない。
+  \item \textbf{透視投影}: 投射線が視点に集まる。遠い物体ほど小さく見える。
+\end{itemize}
+
+以下では透視投影を扱う。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=Latex,scale=0.9]
+    % Parallel projection
+    \begin{scope}[xshift=-4.2cm]
+      \node[font=\bfseries] at (0,2.5) {平行投影};
+      \draw[thick] (2,-1.5) -- (2,1.8);
+      \node[right] at (2,1.55) {screen};
+      \draw[thick] (-1.3,-0.8) rectangle (-0.2,0.4);
+      \foreach \y in {-0.6,0,0.6} {
+        \draw[->] (-2.3,\y) -- (2,\y);
+      }
+      \node at (0,-2.0) {投射線は平行};
+    \end{scope}
+
+    % Perspective projection
+    \begin{scope}[xshift=4.2cm]
+      \node[font=\bfseries] at (0,2.5) {透視投影};
+      \fill ( -2,0) circle (2pt);
+      \node[below] at (-2,0) {視点};
+      \draw[thick] (2,-1.5) -- (2,1.8);
+      \node[right] at (2,1.55) {screen};
+      \draw[thick] (-0.3,-0.8) rectangle (0.8,0.4);
+      \draw[->] (-2,0) -- (2,1.1);
+      \draw[->] (-2,0) -- (2,-1.1);
+      \draw[->] (-2,0) -- (2,0.35);
+      \node at (0,-2.0) {投射線が視点へ集まる};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{平行投影と透視投影の違い}
+\end{figure}
+
+\section{Viewing Volume}
+
+カメラは原点にあり、$-z$ 方向を向いているとする。
+
+透視投影で画面に表示される範囲は四角錐台（viewing frustum）になる。
+カメラからの距離を正の値 $n,f$ で表し、
+
+\begin{align*}
+  z &= -n && \text{near plane},\\
+  z &= -f && \text{far plane},
+\end{align*}
+
+とする。ただし $0<n<f$ である。
+near plane より手前、far plane より奥のものは最終的に表示しない。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=Latex,scale=1.0]
+    \fill (0,0) circle (2pt);
+    \node[left] at (0,0) {camera};
+    \draw[->] (-0.5,0) -- (7.2,0) node[right] {$-z$};
+
+    \draw[thick] (2,-1.0) -- (2,1.0);
+    \draw[thick] (6,-2.3) -- (6,2.3);
+    \node[above] at (2,1.0) {near plane};
+    \node[above] at (6,2.3) {far plane};
+
+    \draw[thick] (0,0) -- (6,2.3);
+    \draw[thick] (0,0) -- (6,-2.3);
+    \draw[dashed] (2,1.0) -- (6,2.3);
+    \draw[dashed] (2,-1.0) -- (6,-2.3);
+
+    \draw[<->] (0,-2.8) -- node[below] {$n$} (2,-2.8);
+    \draw[<->] (0,-3.3) -- node[below] {$f$} (6,-3.3);
+  \end{tikzpicture}
+  \caption{透視投影の viewing frustum。可視領域は四角錐台になる。}
+\end{figure}
+
+\section{透視投影}
+
+view space 上の点を
+
+\[
+  \bm{p}_e = (x_e,y_e,z_e)
+\]
+
+とする。near plane 上に投影された座標を $(x',y',-n)$ とすると、相似な三角形から
+
+\begin{align*}
+  \frac{x'}{x_e} &= \frac{-n}{z_e},\\
+  \frac{y'}{y_e} &= \frac{-n}{z_e}.
+\end{align*}
+
+したがって
+
+\begin{align}
+  x' &= -n\frac{x_e}{z_e},\\
+  y' &= -n\frac{y_e}{z_e}.
+\end{align}
+
+$z_e<0$ なので、カメラの前にある点については自然な向きになる。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=Latex,scale=1.05]
+    \fill (0,0) circle (2pt);
+    \node[below left] at (0,0) {camera};
+    \draw[->] (-0.5,0) -- (7,0) node[right] {$-z$};
+    \draw[->] (0,-2.2) -- (0,2.6) node[above] {$y$};
+
+    \draw[thick] (2,-1.8) -- (2,1.8);
+    \node[below] at (2,-1.8) {near plane};
+
+    \coordinate (P) at (5,2.0);
+    \coordinate (Q) at (2,0.8);
+    \fill (P) circle (2pt) node[above right] {$P=(y_e,z_e)$};
+    \fill (Q) circle (2pt) node[above left] {$P'=(y',-n)$};
+    \draw[thick] (0,0) -- (P);
+
+    \draw[dashed] (P) -- (5,0);
+    \draw[dashed] (Q) -- (2,0);
+    \draw[<->] (0,-0.55) -- node[below] {$n$} (2,-0.55);
+    \draw[<->] (0,-1.1) -- node[below] {$-z_e$} (5,-1.1);
+    \draw[<->] (5,0) -- node[right] {$y_e$} (P);
+    \draw[<->] (2,0) -- node[left] {$y'$} (Q);
+  \end{tikzpicture}
+  \caption{相似三角形による透視投影。$x$ 方向も全く同じ関係になる。}
+\end{figure}
+
+ここで問題になるのは $1/z_e$ であり、そのままでは通常の行列積だけで表現できない。
+
+\section{同次座標と Perspective Divide}
+
+同次座標
+
+\[
+  (x,y,z,w)
+\]
+
+を使い、Projection Matrix によって
+
+\[
+  w_{clip}=-z_e
+\]
+
+となるようにする。
+
+行列積の後で
+
+\[
+  \bm{p}_{ndc}
+  =
+  \frac{1}{w_{clip}}
+  \begin{pmatrix}
+    x_{clip}\\
+    y_{clip}\\
+    z_{clip}
+  \end{pmatrix}
+\]
+
+と割れば、透視投影に必要な $1/z_e$ を後段の除算で実現できる。
+つまり、相似三角形で現れた負号は $w_{clip}=-z_e$ に吸収されている。
+
+\section{FOV と Aspect Ratio}
+
+near plane の幅を $w$、高さを $h$ とする。
+縦方向の視野角を $\mathrm{fov}_y$ とすると、
+
+\[
+  \frac{h}{2}
+  =
+  n\tan\left(\frac{\mathrm{fov}_y}{2}\right).
+\]
+
+よって
+
+\[
+  h
+  =
+  2n\tan\left(\frac{\mathrm{fov}_y}{2}\right).
+\]
+
+aspect ratio を
+
+\[
+  a=\frac{w}{h}
+\]
+
+とすれば、
+
+\[
+  w=ah.
+\]
+
+したがって $x,y$ 方向の projection scale は
+
+\begin{align*}
+  \frac{2n}{h}
+  &=
+  \frac{1}{\tan(\mathrm{fov}_y/2)},\\
+  \frac{2n}{w}
+  &=
+  \frac{1}{a\tan(\mathrm{fov}_y/2)}.
+\end{align*}
+
+near plane 上の $[-w/2,w/2]$ と $[-h/2,h/2]$ を、NDC の $[-1,1]$ に対応させる。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=Latex,scale=1.05]
+    \fill (0,0) circle (2pt);
+    \node[below left] at (0,0) {camera};
+    \draw[->] (-0.4,0) -- (6.2,0) node[right] {$-z$};
+    \draw[thick] (4,-2.0) -- (4,2.0);
+    \node[right] at (4,1.8) {near plane};
+    \draw[thick] (0,0) -- (4,2.0);
+    \draw[thick] (0,0) -- (4,-2.0);
+
+    \draw[<->] (4.45,0) -- node[right] {$h/2$} (4.45,2.0);
+    \draw[<->] (0,-2.5) -- node[below] {$n$} (4,-2.5);
+    \draw (1.4,0) arc[start angle=0,end angle=26.565,radius=1.4];
+    \node at (2.0,0.48) {$\mathrm{fov}_y/2$};
+  \end{tikzpicture}
+  \caption{$\mathrm{fov}_y$、near 距離 $n$、near plane 高さ $h$ の関係}
+\end{figure}
+
+\section{$z$ の正規化}
+
+$x,y$ だけでなく、depth も canonical な範囲へ写す。
+OpenGL 型の NDC を使い、
+
+\begin{align*}
+  z_e=-n &\quad\longrightarrow\quad z_{ndc}=-1,\\
+  z_e=-f &\quad\longrightarrow\quad z_{ndc}=+1
+\end{align*}
+
+としたい。
+
+$z$ の clip-space 座標を
+
+\[
+  z_{clip}=Az_e+B
+\]
+
+と仮定する。$w_{clip}=-z_e$ なので
+
+\[
+  z_{ndc}
+  =
+  \frac{z_{clip}}{w_{clip}}
+  =
+  \frac{Az_e+B}{-z_e}.
+\]
+
+near plane では
+
+\[
+  \frac{-An+B}{n}=-1,
+\]
+
+したがって
+
+\[
+  -An+B=-n.
+\]
+
+far plane では
+
+\[
+  \frac{-Af+B}{f}=1,
+\]
+
+したがって
+
+\[
+  -Af+B=f.
+\]
+
+この2式を解くと
+
+\begin{align*}
+  A &= -\frac{f+n}{f-n},\\
+  B &= -\frac{2fn}{f-n}.
+\end{align*}
+
+よって
+
+\[
+  z_{clip}
+  =
+  -\frac{f+n}{f-n}z_e
+  -\frac{2fn}{f-n}.
+\]
+
+perspective divide が入るため、$z_{ndc}$ は view-space の $z$ に対して線形ではない。
+depth の分解能はカメラに近い側へ多く割り当てられる。
+
+\section{Projection Matrix}
+
+以上をまとめると、カメラが $-z$ 方向を向く場合の perspective projection matrix は
+
+\[
+P=
+\begin{pmatrix}
+\dfrac{2n}{w} & 0 & 0 & 0 \\
+0 & \dfrac{2n}{h} & 0 & 0 \\
+0 & 0 & -\dfrac{f+n}{f-n} & -\dfrac{2fn}{f-n} \\
+0 & 0 & -1 & 0
+\end{pmatrix}.
+\]
+
+$\mathrm{fov}_y$ と aspect ratio を直接使えば、
+
+\[
+  s=\frac{1}{\tan(\mathrm{fov}_y/2)}
+\]
+
+として
+
+\[
+P=
+\begin{pmatrix}
+\dfrac{s}{a} & 0 & 0 & 0 \\
+0 & s & 0 & 0 \\
+0 & 0 & -\dfrac{f+n}{f-n} & -\dfrac{2fn}{f-n} \\
+0 & 0 & -1 & 0
+\end{pmatrix}.
+\]
+
+\section{描画までの流れ}
+
+頂点 $\bm{p}_{local}$ に対して、
+
+\[
+  \bm{p}_{clip}
+  =
+  PVM\bm{p}_{local}
+\]
+
+とする。
+
+その後、perspective divide によって
+
+\[
+  \bm{p}_{ndc}
+  =
+  \frac{\bm{p}_{clip,xyz}}{w_{clip}}
+\]
+
+を得る。
+
+最後に viewport transform を行い、NDC の $[-1,1]$ を画面の pixel 座標へ写す。
+画面幅を $W$、高さを $H$ とすれば、SDL のように $y$ 軸が下向きの画面では
+
+\begin{align*}
+  x_{screen} &= \frac{x_{ndc}+1}{2}W,\\
+  y_{screen} &= \frac{1-y_{ndc}}{2}H.
+\end{align*}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=Latex,scale=0.95]
+    \begin{scope}[xshift=-3.6cm]
+      \draw[thick] (-1.8,-1.8) rectangle (1.8,1.8);
+      \draw[->] (-2.2,0) -- (2.2,0) node[right] {$x_{ndc}$};
+      \draw[->] (0,-2.2) -- (0,2.2) node[above] {$y_{ndc}$};
+      \node[below left] at (-1.8,-1.8) {$(-1,-1)$};
+      \node[above right] at (1.8,1.8) {$(1,1)$};
+      \node at (0,-2.7) {NDC};
+    \end{scope}
+
+    \draw[->,very thick] (-0.8,0) -- (0.8,0) node[midway,above] {viewport};
+
+    \begin{scope}[xshift=4.0cm]
+      \draw[thick] (0,0) rectangle (4.0,2.25);
+      \node[above left] at (0,2.25) {$(0,0)$};
+      \node[below right] at (4.0,0) {$(W,H)$};
+      \draw[->] (0,2.25) -- (1.2,2.25) node[right] {$+x$};
+      \draw[->] (0,2.25) -- (0,1.25) node[below] {$+y$};
+      \node at (2.0,-0.6) {SDL screen coordinates};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{NDC から画面 pixel 座標への viewport transform}
+\end{figure}
+
+したがって現在の変換パイプラインは
+
+\[
+  \text{Local}
+  \rightarrow
+  \text{Model}
+  \rightarrow
+  \text{View}
+  \rightarrow
+  \text{Projection}
+  \rightarrow
+  \text{Perspective Divide}
+  \rightarrow
+  \text{NDC}
+  \rightarrow
+  \text{Viewport}
+  \rightarrow
+  \text{Pixel}
+\]
+
+となる。
+
+\end{document}

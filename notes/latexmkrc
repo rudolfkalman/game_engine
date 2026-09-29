@@ -1,0 +1,4 @@
+$pdf_mode = 4;
+$out_dir = 'out';
+$lualatex = 'lualatex -interaction=nonstopmode -synctex=1 %O %S';
+$clean_ext = 'synctex.gz';
