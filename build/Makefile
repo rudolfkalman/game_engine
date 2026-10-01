@@ -198,6 +198,102 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/math.o: src/math.cpp.o
+.PHONY : src/math.o
+
+# target to build an object file
+src/math.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/math.cpp.o
+.PHONY : src/math.cpp.o
+
+src/math.i: src/math.cpp.i
+.PHONY : src/math.i
+
+# target to preprocess a source file
+src/math.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/math.cpp.i
+.PHONY : src/math.cpp.i
+
+src/math.s: src/math.cpp.s
+.PHONY : src/math.s
+
+# target to generate assembly for a file
+src/math.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/math.cpp.s
+.PHONY : src/math.cpp.s
+
+src/mesh.o: src/mesh.cpp.o
+.PHONY : src/mesh.o
+
+# target to build an object file
+src/mesh.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/mesh.cpp.o
+.PHONY : src/mesh.cpp.o
+
+src/mesh.i: src/mesh.cpp.i
+.PHONY : src/mesh.i
+
+# target to preprocess a source file
+src/mesh.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/mesh.cpp.i
+.PHONY : src/mesh.cpp.i
+
+src/mesh.s: src/mesh.cpp.s
+.PHONY : src/mesh.s
+
+# target to generate assembly for a file
+src/mesh.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/mesh.cpp.s
+.PHONY : src/mesh.cpp.s
+
+src/renderer.o: src/renderer.cpp.o
+.PHONY : src/renderer.o
+
+# target to build an object file
+src/renderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/renderer.cpp.o
+.PHONY : src/renderer.cpp.o
+
+src/renderer.i: src/renderer.cpp.i
+.PHONY : src/renderer.i
+
+# target to preprocess a source file
+src/renderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/renderer.cpp.i
+.PHONY : src/renderer.cpp.i
+
+src/renderer.s: src/renderer.cpp.s
+.PHONY : src/renderer.s
+
+# target to generate assembly for a file
+src/renderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/renderer.cpp.s
+.PHONY : src/renderer.cpp.s
+
+src/transform.o: src/transform.cpp.o
+.PHONY : src/transform.o
+
+# target to build an object file
+src/transform.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/transform.cpp.o
+.PHONY : src/transform.cpp.o
+
+src/transform.i: src/transform.cpp.i
+.PHONY : src/transform.i
+
+# target to preprocess a source file
+src/transform.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/transform.cpp.i
+.PHONY : src/transform.cpp.i
+
+src/transform.s: src/transform.cpp.s
+.PHONY : src/transform.s
+
+# target to generate assembly for a file
+src/transform.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/src/transform.cpp.s
+.PHONY : src/transform.cpp.s
+
 src/window.o: src/window.cpp.o
 .PHONY : src/window.o
 
@@ -238,6 +334,18 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/math.o"
+	@echo "... src/math.i"
+	@echo "... src/math.s"
+	@echo "... src/mesh.o"
+	@echo "... src/mesh.i"
+	@echo "... src/mesh.s"
+	@echo "... src/renderer.o"
+	@echo "... src/renderer.i"
+	@echo "... src/renderer.s"
+	@echo "... src/transform.o"
+	@echo "... src/transform.i"
+	@echo "... src/transform.s"
 	@echo "... src/window.o"
 	@echo "... src/window.i"
 	@echo "... src/window.s"

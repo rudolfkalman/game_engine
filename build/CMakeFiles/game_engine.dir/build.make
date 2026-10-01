@@ -100,21 +100,85 @@ CMakeFiles/game_engine.dir/src/window.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/game_engine.dir/src/window.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rudolfkalman/projects/game_engine/src/window.cpp -o CMakeFiles/game_engine.dir/src/window.cpp.s
 
+CMakeFiles/game_engine.dir/src/math.cpp.o: CMakeFiles/game_engine.dir/flags.make
+CMakeFiles/game_engine.dir/src/math.cpp.o: /home/rudolfkalman/projects/game_engine/src/math.cpp
+CMakeFiles/game_engine.dir/src/math.cpp.o: CMakeFiles/game_engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/rudolfkalman/projects/game_engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/game_engine.dir/src/math.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/game_engine.dir/src/math.cpp.o -MF CMakeFiles/game_engine.dir/src/math.cpp.o.d -o CMakeFiles/game_engine.dir/src/math.cpp.o -c /home/rudolfkalman/projects/game_engine/src/math.cpp
+
+CMakeFiles/game_engine.dir/src/math.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/game_engine.dir/src/math.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rudolfkalman/projects/game_engine/src/math.cpp > CMakeFiles/game_engine.dir/src/math.cpp.i
+
+CMakeFiles/game_engine.dir/src/math.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/game_engine.dir/src/math.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rudolfkalman/projects/game_engine/src/math.cpp -o CMakeFiles/game_engine.dir/src/math.cpp.s
+
+CMakeFiles/game_engine.dir/src/mesh.cpp.o: CMakeFiles/game_engine.dir/flags.make
+CMakeFiles/game_engine.dir/src/mesh.cpp.o: /home/rudolfkalman/projects/game_engine/src/mesh.cpp
+CMakeFiles/game_engine.dir/src/mesh.cpp.o: CMakeFiles/game_engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/rudolfkalman/projects/game_engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/game_engine.dir/src/mesh.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/game_engine.dir/src/mesh.cpp.o -MF CMakeFiles/game_engine.dir/src/mesh.cpp.o.d -o CMakeFiles/game_engine.dir/src/mesh.cpp.o -c /home/rudolfkalman/projects/game_engine/src/mesh.cpp
+
+CMakeFiles/game_engine.dir/src/mesh.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/game_engine.dir/src/mesh.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rudolfkalman/projects/game_engine/src/mesh.cpp > CMakeFiles/game_engine.dir/src/mesh.cpp.i
+
+CMakeFiles/game_engine.dir/src/mesh.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/game_engine.dir/src/mesh.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rudolfkalman/projects/game_engine/src/mesh.cpp -o CMakeFiles/game_engine.dir/src/mesh.cpp.s
+
+CMakeFiles/game_engine.dir/src/transform.cpp.o: CMakeFiles/game_engine.dir/flags.make
+CMakeFiles/game_engine.dir/src/transform.cpp.o: /home/rudolfkalman/projects/game_engine/src/transform.cpp
+CMakeFiles/game_engine.dir/src/transform.cpp.o: CMakeFiles/game_engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/rudolfkalman/projects/game_engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/game_engine.dir/src/transform.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/game_engine.dir/src/transform.cpp.o -MF CMakeFiles/game_engine.dir/src/transform.cpp.o.d -o CMakeFiles/game_engine.dir/src/transform.cpp.o -c /home/rudolfkalman/projects/game_engine/src/transform.cpp
+
+CMakeFiles/game_engine.dir/src/transform.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/game_engine.dir/src/transform.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rudolfkalman/projects/game_engine/src/transform.cpp > CMakeFiles/game_engine.dir/src/transform.cpp.i
+
+CMakeFiles/game_engine.dir/src/transform.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/game_engine.dir/src/transform.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rudolfkalman/projects/game_engine/src/transform.cpp -o CMakeFiles/game_engine.dir/src/transform.cpp.s
+
+CMakeFiles/game_engine.dir/src/renderer.cpp.o: CMakeFiles/game_engine.dir/flags.make
+CMakeFiles/game_engine.dir/src/renderer.cpp.o: /home/rudolfkalman/projects/game_engine/src/renderer.cpp
+CMakeFiles/game_engine.dir/src/renderer.cpp.o: CMakeFiles/game_engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/rudolfkalman/projects/game_engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/game_engine.dir/src/renderer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/game_engine.dir/src/renderer.cpp.o -MF CMakeFiles/game_engine.dir/src/renderer.cpp.o.d -o CMakeFiles/game_engine.dir/src/renderer.cpp.o -c /home/rudolfkalman/projects/game_engine/src/renderer.cpp
+
+CMakeFiles/game_engine.dir/src/renderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/game_engine.dir/src/renderer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rudolfkalman/projects/game_engine/src/renderer.cpp > CMakeFiles/game_engine.dir/src/renderer.cpp.i
+
+CMakeFiles/game_engine.dir/src/renderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/game_engine.dir/src/renderer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rudolfkalman/projects/game_engine/src/renderer.cpp -o CMakeFiles/game_engine.dir/src/renderer.cpp.s
+
 # Object files for target game_engine
 game_engine_OBJECTS = \
 "CMakeFiles/game_engine.dir/src/main.cpp.o" \
-"CMakeFiles/game_engine.dir/src/window.cpp.o"
+"CMakeFiles/game_engine.dir/src/window.cpp.o" \
+"CMakeFiles/game_engine.dir/src/math.cpp.o" \
+"CMakeFiles/game_engine.dir/src/mesh.cpp.o" \
+"CMakeFiles/game_engine.dir/src/transform.cpp.o" \
+"CMakeFiles/game_engine.dir/src/renderer.cpp.o"
 
 # External object files for target game_engine
 game_engine_EXTERNAL_OBJECTS =
 
 game_engine: CMakeFiles/game_engine.dir/src/main.cpp.o
 game_engine: CMakeFiles/game_engine.dir/src/window.cpp.o
+game_engine: CMakeFiles/game_engine.dir/src/math.cpp.o
+game_engine: CMakeFiles/game_engine.dir/src/mesh.cpp.o
+game_engine: CMakeFiles/game_engine.dir/src/transform.cpp.o
+game_engine: CMakeFiles/game_engine.dir/src/renderer.cpp.o
 game_engine: CMakeFiles/game_engine.dir/build.make
 game_engine: CMakeFiles/game_engine.dir/compiler_depend.ts
 game_engine: /usr/lib/libSDL3.so.0.4.16
 game_engine: CMakeFiles/game_engine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/rudolfkalman/projects/game_engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable game_engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/rudolfkalman/projects/game_engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable game_engine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/game_engine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

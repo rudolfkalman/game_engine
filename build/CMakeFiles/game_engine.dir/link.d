@@ -4,6 +4,10 @@ game_engine: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtbeginS.o \
   CMakeFiles/game_engine.dir/src/main.cpp.o \
   CMakeFiles/game_engine.dir/src/window.cpp.o \
+  CMakeFiles/game_engine.dir/src/math.cpp.o \
+  CMakeFiles/game_engine.dir/src/mesh.cpp.o \
+  CMakeFiles/game_engine.dir/src/transform.cpp.o \
+  CMakeFiles/game_engine.dir/src/renderer.cpp.o \
   /usr/lib/libSDL3.so.0.4.16 \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libm.so \
@@ -46,6 +50,14 @@ game_engine: \
 CMakeFiles/game_engine.dir/src/main.cpp.o:
 
 CMakeFiles/game_engine.dir/src/window.cpp.o:
+
+CMakeFiles/game_engine.dir/src/math.cpp.o:
+
+CMakeFiles/game_engine.dir/src/mesh.cpp.o:
+
+CMakeFiles/game_engine.dir/src/transform.cpp.o:
+
+CMakeFiles/game_engine.dir/src/renderer.cpp.o:
 
 /usr/lib/libSDL3.so.0.4.16:
 

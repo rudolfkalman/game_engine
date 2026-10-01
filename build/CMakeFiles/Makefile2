@@ -85,12 +85,12 @@ clean: CMakeFiles/game_engine.dir/clean
 CMakeFiles/game_engine.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/rudolfkalman/projects/game_engine/build/CMakeFiles --progress-num=1,2,3 "Built target game_engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/rudolfkalman/projects/game_engine/build/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target game_engine"
 .PHONY : CMakeFiles/game_engine.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/game_engine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rudolfkalman/projects/game_engine/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/rudolfkalman/projects/game_engine/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/game_engine.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/rudolfkalman/projects/game_engine/build/CMakeFiles 0
 .PHONY : CMakeFiles/game_engine.dir/rule
@@ -102,7 +102,7 @@ game_engine: CMakeFiles/game_engine.dir/rule
 # codegen rule for target.
 CMakeFiles/game_engine.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/rudolfkalman/projects/game_engine/build/CMakeFiles --progress-num=1,2,3 "Finished codegen for target game_engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/rudolfkalman/projects/game_engine/build/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Finished codegen for target game_engine"
 .PHONY : CMakeFiles/game_engine.dir/codegen
 
 # clean rule for target.

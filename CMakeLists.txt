@@ -16,6 +16,10 @@ find_package(SDL3 REQUIRED CONFIG COMPONENTS SDL3-shared)
 add_executable(game_engine
     src/main.cpp
     src/window.cpp
+    src/math.cpp
+    src/mesh.cpp
+    src/transform.cpp
+    src/renderer.cpp
     # src/framebuffer.cpp
     # 後で増やす
 )

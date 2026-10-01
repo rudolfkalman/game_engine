@@ -9,6 +9,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/rudolfkalman/projects/game_engine/src/main.cpp" "CMakeFiles/game_engine.dir/src/main.cpp.o" "gcc" "CMakeFiles/game_engine.dir/src/main.cpp.o.d"
+  "/home/rudolfkalman/projects/game_engine/src/math.cpp" "CMakeFiles/game_engine.dir/src/math.cpp.o" "gcc" "CMakeFiles/game_engine.dir/src/math.cpp.o.d"
+  "/home/rudolfkalman/projects/game_engine/src/mesh.cpp" "CMakeFiles/game_engine.dir/src/mesh.cpp.o" "gcc" "CMakeFiles/game_engine.dir/src/mesh.cpp.o.d"
+  "/home/rudolfkalman/projects/game_engine/src/renderer.cpp" "CMakeFiles/game_engine.dir/src/renderer.cpp.o" "gcc" "CMakeFiles/game_engine.dir/src/renderer.cpp.o.d"
+  "/home/rudolfkalman/projects/game_engine/src/transform.cpp" "CMakeFiles/game_engine.dir/src/transform.cpp.o" "gcc" "CMakeFiles/game_engine.dir/src/transform.cpp.o.d"
   "/home/rudolfkalman/projects/game_engine/src/window.cpp" "CMakeFiles/game_engine.dir/src/window.cpp.o" "gcc" "CMakeFiles/game_engine.dir/src/window.cpp.o.d"
   "" "game_engine" "gcc" "CMakeFiles/game_engine.dir/link.d"
   )
