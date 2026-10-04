@@ -1,7 +1,0 @@
-/home/rudolfkalman/projects/game_engine/build/CMakeFiles/game_engine.dir
-/home/rudolfkalman/projects/game_engine/build/CMakeFiles/edit_cache.dir
-/home/rudolfkalman/projects/game_engine/build/CMakeFiles/rebuild_cache.dir
-/home/rudolfkalman/projects/game_engine/build/CMakeFiles/list_install_components.dir
-/home/rudolfkalman/projects/game_engine/build/CMakeFiles/install.dir
-/home/rudolfkalman/projects/game_engine/build/CMakeFiles/install/local.dir
-/home/rudolfkalman/projects/game_engine/build/CMakeFiles/install/strip.dir
