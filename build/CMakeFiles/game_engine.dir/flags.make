@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/rudolfkalman/projects/game_engine/include -isystem /usr/include/eigen3
 
-CXX_FLAGS = -std=c++20 -Wall -Wextra -Wpedantic
+CXX_FLAGS = -O3 -DNDEBUG -std=c++20 -Wall -Wextra -Wpedantic
 

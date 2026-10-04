@@ -8,11 +8,29 @@
 #include <cstdint>
 
 namespace game_engine::renderer {
-//std::vector<uint32_t> frame_buff(1280 * 720, SDL_Color{255, 255, 255, 255});
+uint32_t rgba(SDL_Color *color);
 
-void DrawMesh(SDL_Renderer *renderer, const mesh::Mesh &mesh,
-              const transform::TransformedMesh &transformed, int screen_width,
-              int screen_height);
+class Renderer {
+public:
+    Renderer(SDL_Renderer* sdl_renderer, int width, int height);
+
+    void Clear(uint32_t color);
+    void DrawMesh(
+        const mesh::Mesh& mesh,
+        const transform::TransformedMesh& transformed
+    );
+    void Present();
+
+private:
+    SDL_Renderer* sdl_renderer_;
+    SDL_Texture* texture_;
+
+    int width_;
+    int height_;
+
+    std::vector<uint32_t> frame_buffer_;
+    std::vector<double> z_buffer_;
+};
 
 } // namespace game_engine::renderer
 

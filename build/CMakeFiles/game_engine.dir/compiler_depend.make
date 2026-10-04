@@ -113,7 +113,9 @@ CMakeFiles/game_engine.dir/src/main.cpp.o: /home/rudolfkalman/projects/game_engi
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio.h \
   /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-bsearch.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
@@ -597,7 +599,9 @@ CMakeFiles/game_engine.dir/src/math.cpp.o: /home/rudolfkalman/projects/game_engi
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio.h \
   /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-bsearch.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
@@ -1080,7 +1084,9 @@ CMakeFiles/game_engine.dir/src/mesh.cpp.o: /home/rudolfkalman/projects/game_engi
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio.h \
   /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-bsearch.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
@@ -1626,7 +1632,9 @@ CMakeFiles/game_engine.dir/src/renderer.cpp.o: /home/rudolfkalman/projects/game_
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio.h \
   /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-bsearch.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
@@ -1794,6 +1802,7 @@ CMakeFiles/game_engine.dir/src/renderer.cpp.o: /home/rudolfkalman/projects/game_
   /usr/include/c++/16/initializer_list \
   /usr/include/c++/16/ios \
   /usr/include/c++/16/iosfwd \
+  /usr/include/c++/16/iostream \
   /usr/include/c++/16/istream \
   /usr/include/c++/16/limits \
   /usr/include/c++/16/new \
@@ -2110,7 +2119,9 @@ CMakeFiles/game_engine.dir/src/transform.cpp.o: /home/rudolfkalman/projects/game
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio.h \
   /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-bsearch.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
@@ -2627,7 +2638,9 @@ CMakeFiles/game_engine.dir/src/window.cpp.o: /home/rudolfkalman/projects/game_en
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio.h \
   /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-bsearch.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
@@ -2831,17 +2844,13 @@ CMakeFiles/game_engine.dir/src/math.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h:
 
-/usr/include/c++/16/cmath:
-
-/usr/include/eigen3/Eigen/src/Core/GeneralProduct.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/16/include/limits.h:
 
 /usr/include/c++/16/bits/version.h:
 
 /usr/include/c++/16/bits/streambuf_iterator.h:
 
 /usr/include/c++/16/bits/stl_vector.h:
-
-/usr/include/SDL3/SDL_messagebox.h:
 
 /usr/include/SDL3/SDL_timer.h:
 
@@ -3067,6 +3076,8 @@ CMakeFiles/game_engine.dir/src/window.cpp.o:
 
 /usr/include/c++/16/tr1/poly_hermite.tcc:
 
+/usr/include/bits/types/__locale_t.h:
+
 /usr/include/bits/uintn-identity.h:
 
 /usr/include/bits/types/__sigset_t.h:
@@ -3124,8 +3135,6 @@ CMakeFiles/game_engine.dir/src/window.cpp.o:
 /usr/include/c++/16/bits/range_access.h:
 
 /usr/include/eigen3/Eigen/src/misc/Kernel.h:
-
-/usr/include/bits/types/__locale_t.h:
 
 /usr/include/SDL3/SDL_misc.h:
 
@@ -3194,6 +3203,8 @@ CMakeFiles/game_engine.dir/src/window.cpp.o:
 /usr/include/eigen3/Eigen/src/Geometry/Umeyama.h:
 
 /usr/include/SDL3/SDL_gpu.h:
+
+/usr/include/bits/stdio.h:
 
 /usr/include/eigen3/Eigen/src/Core/SolverBase.h:
 
@@ -3331,10 +3342,6 @@ CMakeFiles/game_engine.dir/src/window.cpp.o:
 
 /usr/include/bits/types/__FILE.h:
 
-/usr/include/c++/16/clocale:
-
-/usr/include/eigen3/Eigen/src/Core/BandMatrix.h:
-
 /usr/include/c++/16/bits/atomic_wait.h:
 
 /usr/include/bits/pthreadtypes-arch.h:
@@ -3356,6 +3363,10 @@ CMakeFiles/game_engine.dir/src/window.cpp.o:
 /usr/include/c++/16/bits/iterator_concepts.h:
 
 /usr/include/alloca.h:
+
+/usr/include/c++/16/clocale:
+
+/usr/include/eigen3/Eigen/src/Core/BandMatrix.h:
 
 /usr/include/bits/mathcalls-macros.h:
 
@@ -3437,6 +3448,14 @@ CMakeFiles/game_engine.dir/src/window.cpp.o:
 
 /usr/include/bits/stdio_lim.h:
 
+/usr/include/SDL3/SDL_messagebox.h:
+
+/usr/include/bits/stdlib-bsearch.h:
+
+/usr/include/eigen3/Eigen/src/SVD/BDCSVD.h:
+
+/usr/include/eigen3/Eigen/src/plugins/ArrayCwiseBinaryOps.h:
+
 /usr/include/c++/16/cerrno:
 
 /usr/include/features.h:
@@ -3450,8 +3469,6 @@ CMakeFiles/game_engine.dir/src/window.cpp.o:
 /usr/include/SDL3/SDL_filesystem.h:
 
 /usr/include/c++/16/bits/allocator.h:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/include/limits.h:
 
 /usr/include/bits/stdlib-float.h:
 
@@ -3486,6 +3503,10 @@ CMakeFiles/game_engine.dir/src/window.cpp.o:
 /usr/include/c++/16/string_view:
 
 /usr/include/eigen3/Eigen/src/Core/functors/AssignmentFunctors.h:
+
+/usr/include/c++/16/cmath:
+
+/usr/include/eigen3/Eigen/src/Core/GeneralProduct.h:
 
 /usr/include/c++/16/compare:
 
@@ -3913,17 +3934,13 @@ CMakeFiles/game_engine.dir/src/main.cpp.o:
 
 /usr/include/eigen3/Eigen/src/SVD/SVDBase.h:
 
-/usr/include/eigen3/Eigen/src/SVD/BDCSVD.h:
-
-/usr/include/eigen3/Eigen/src/plugins/ArrayCwiseBinaryOps.h:
-
 /usr/include/eigen3/Eigen/src/plugins/CommonCwiseBinaryOps.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/16/include/mm_malloc.h:
 
 /usr/include/c++/16/cctype:
 
 /usr/include/bits/posix1_lim.h:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/include/mm_malloc.h:
 
 /usr/include/eigen3/Eigen/src/Core/functors/BinaryFunctors.h:
 

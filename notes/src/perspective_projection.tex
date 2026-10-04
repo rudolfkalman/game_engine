@@ -424,4 +424,472 @@ P=
 
 となる。
 
+\section{Triangle Fill と Edge Function}
+
+画面上の三角形を塗りつぶすときは、まず3頂点の $x,y$ から
+axis-aligned bounding box (AABB) を求め、その矩形内の pixel だけを走査する。
+三角形の頂点を $A,B,C$ とし、各辺を
+
+\[
+  A\rightarrow B,\qquad
+  B\rightarrow C,\qquad
+  C\rightarrow A
+\]
+
+とする。
+任意の画面上の点 $P$ が各辺のどちら側にあるかは、2次元外積
+
+\[
+  \operatorname{cross}\bigl((u_x,u_y),(v_x,v_y)\bigr)
+  =u_xv_y-u_yv_x
+\]
+
+の符号で判定できる。
+
+例えば辺 $A\rightarrow B$ に対しては
+
+\[
+  E_{AB}(P)
+  =
+  (B-A)\times(P-A)
+\]
+
+を計算する。
+三角形の3辺について求めた edge function の符号がすべて同じなら、
+$P$ は三角形内部にある。
+画面座標では viewport transform により $y$ 軸が反転しているため、
+実装では winding に依存せず
+
+\[
+  (E_0\ge0\land E_1\ge0\land E_2\ge0)
+  \quad\text{or}\quad
+  (E_0\le0\land E_1\le0\land E_2\le0)
+\]
+
+のように判定してもよい。
+
+\subsection{Pixel center sampling と $+0.5$}
+
+framebuffer 上の整数 index $(x,y)$ は1 pixel の領域を表す。
+例えば pixel $(10,20)$ は概念的には
+
+\[
+  10\le x<11,\qquad 20\le y<21
+\]
+
+の領域を占める。
+その中心は
+
+\[
+  (10.5,20.5)
+\]
+
+なので、三角形内判定では一般に
+
+\[
+  P=(x+0.5,\ y+0.5)
+\]
+
+をサンプル点として使う。
+一方、実際に framebuffer へ書き込む index はそのまま
+
+\[
+  \texttt{index}=yW+x
+\]
+
+でよい。
+$+0.5$ は配列 index をずらすためではなく、pixel のどの位置を代表点として
+coverage 判定するかを決めるためのものである。
+
+\subsection{Edge Function の逐次更新}
+
+各 pixel ごとに外積を最初から計算すると、内側ループで多数の乗算と減算が必要になる。
+しかし edge function は $x,y$ の一次式なので、隣の pixel の値は定数加算だけで求められる。
+
+辺ベクトルを
+
+\[
+  \bm{e}=B-A=(d_x,d_y)
+\]
+
+とする。現在使っている edge function を
+
+\[
+  E(x,y)
+  =
+  (B-A)\times(P-A)
+\]
+
+とすると、$P=(x,y)$ に対して
+
+\begin{align*}
+  E(x,y)
+  &=d_x(y-a_y)-d_y(x-a_x)\\
+  &=-d_yx+d_xy+\text{constant}
+\end{align*}
+
+と書ける。
+したがって右隣の pixel では
+
+\[
+  E(x+1,y)=E(x,y)-d_y,
+\]
+
+1行下では
+
+\[
+  E(x,y+1)=E(x,y)+d_x
+\]
+
+となる。
+つまり最初の1 pixel だけ通常の外積を計算すれば、その後は
+
+\begin{align*}
+  \text{right step} &: \quad E\leftarrow E-d_y,\\
+  \text{down step}  &: \quad E_{\mathrm{row}}\leftarrow E_{\mathrm{row}}+d_x
+\end{align*}
+
+だけで走査できる。
+
+実装上は、各行の左端の値と、その行を横に走査する作業用の値を分けて持つ。
+
+\begin{verbatim}
+row_e0 = Edge(A, B, first_pixel)
+row_e1 = Edge(B, C, first_pixel)
+row_e2 = Edge(C, A, first_pixel)
+
+for y = min_y ... max_y:
+    e0 = row_e0
+    e1 = row_e1
+    e2 = row_e2
+
+    for x = min_x ... max_x:
+        if signs of e0,e1,e2 match:
+            draw pixel
+
+        e0 -= (B-A).y
+        e1 -= (C-B).y
+        e2 -= (A-C).y
+
+    row_e0 += (B-A).x
+    row_e1 += (C-B).x
+    row_e2 += (A-C).x
+\end{verbatim}
+
+この方法でも調べる pixel 数自体は AABB の面積に比例するため、計算量の次数は変わらない。
+ただし各 pixel で外積を再計算する必要がなくなり、inner loop をほぼ比較と加算だけにできる。
+同じ edge function は後で barycentric coordinate や depth interpolation を求める際にも再利用できる。
+
+\section{Barycentric Coordinate（重心座標）}
+
+三角形 $ABC$ の内部だけに特別な式を作るのではなく、まず三角形そのものを
+1つの affine なローカル座標系として考える。
+頂点 $A$ を基準点とし、2本の辺
+
+\[
+  B-A,\qquad C-A
+\]
+
+を基底方向として、平面上の点 $P$ を
+
+\begin{equation}
+  P=A+s(B-A)+t(C-A)
+\end{equation}
+
+と表す。
+$B-A$ と $C-A$ が平行でなければ、$s,t\in\mathbb{R}$ とすることで
+この式は三角形内部だけでなく平面全体を表せる。
+
+展開すると
+
+\begin{align*}
+  P
+  &=A+sB-sA+tC-tA\\
+  &=(1-s-t)A+sB+tC.
+\end{align*}
+
+ここで
+
+\[
+  \alpha=1-s-t,\qquad
+  \beta=s,\qquad
+  \gamma=t
+\]
+
+と置けば
+
+\begin{equation}
+  \boxed{
+    P=\alpha A+\beta B+\gamma C,
+    \qquad
+    \alpha+\beta+\gamma=1
+  }
+\end{equation}
+
+となる。この $(\alpha,\beta,\gamma)$ が三角形 $ABC$ に対する
+barycentric coordinate である。
+
+\subsection{$\alpha+\beta+\gamma=1$ の意味}
+
+重みの和が1という条件は、単に「三角形を3つに分割した面積の合計が1になる」から
+後付けした条件ではない。
+もともとの affine 座標
+
+\[
+  P=A+s(B-A)+t(C-A)
+\]
+
+を書き換えた時点で必然的に現れる。
+
+また、この条件によって座標表現が原点の選び方に依存しなくなる。
+すべての点を同じベクトル $d$ だけ平行移動して
+
+\[
+  A'=A+d,\quad B'=B+d,\quad C'=C+d
+\]
+
+とすると
+
+\begin{align*}
+  \alpha A'+\beta B'+\gamma C'
+  &=\alpha A+\beta B+\gamma C
+    +(\alpha+\beta+\gamma)d\\
+  &=P+d
+\end{align*}
+
+となる。最後の等号が成り立つのは
+$\alpha+\beta+\gamma=1$ だからである。
+したがって barycentric coordinate は通常の線形座標というより、
+平行移動を含む affine geometry に自然な座標になっている。
+
+\subsection{三角形内部と外部}
+
+barycentric coordinate 自体は三角形の外でも定義できる。
+三角形内部にある条件は
+
+\begin{equation}
+  \boxed{
+    \alpha\ge0,\qquad
+    \beta\ge0,\qquad
+    \gamma\ge0,
+    \qquad
+    \alpha+\beta+\gamma=1
+  }
+\end{equation}
+
+である。
+このように、係数の和が1で、さらにすべての係数が非負である線形結合を
+\textbf{convex combination（凸結合）}という。
+
+一方、点 $P$ が三角形の外へ出ると、和は1のままだが少なくとも1つの係数が負になる。
+したがって barycentric coordinate は座標表現と point-in-triangle 判定を
+同じ式で扱える。
+
+\subsection{外積による係数の導出}
+
+式
+
+\[
+  P-A=\beta(B-A)+\gamma(C-A)
+\]
+
+から $\beta,\gamma$ を直接求める。
+記号を簡単にするため
+
+\[
+  u=B-A,\qquad
+  v=C-A,\qquad
+  q=P-A
+\]
+
+と置くと
+
+\[
+  q=\beta u+\gamma v
+\]
+
+である。
+
+両辺と $v$ の外積を取ると
+
+\begin{align*}
+  q\times v
+  &=(\beta u+\gamma v)\times v\\
+  &=\beta(u\times v)+\gamma(v\times v)\\
+  &=\beta(u\times v),
+\end{align*}
+
+なので
+
+\begin{equation}
+  \boxed{
+    \beta=
+    \frac{(P-A)\times(C-A)}
+         {(B-A)\times(C-A)}
+  }
+\end{equation}
+
+となる。
+
+同様に $u$ と外積を取れば
+
+\begin{equation}
+  \boxed{
+    \gamma=
+    \frac{(B-A)\times(P-A)}
+         {(B-A)\times(C-A)}
+  }
+\end{equation}
+
+を得る。最後に
+
+\[
+  \alpha=1-\beta-\gamma
+\]
+
+とすればよい。
+
+2次元外積の絶対値は2つのベクトルが張る平行四辺形の面積なので、
+$\frac12$ を掛ければ三角形の面積になる。
+分子と分母の両方に同じ $\frac12$ が現れて打ち消し合うため、上の式は
+そのまま面積比として解釈できる。
+
+\begin{align*}
+  \alpha&=\frac{\operatorname{area}(PBC)}{\operatorname{area}(ABC)},\\
+  \beta &=\frac{\operatorname{area}(PCA)}{\operatorname{area}(ABC)},\\
+  \gamma&=\frac{\operatorname{area}(PAB)}{\operatorname{area}(ABC)}.
+\end{align*}
+
+したがって、例えば $P$ が $A$ に近づくほど
+$\operatorname{area}(PBC)$ は元の三角形 $ABC$ の面積に近づき、
+$\alpha\rightarrow1$ となる。
+
+\subsection{Edge Function との対応}
+
+前節で使った edge function を
+
+\begin{align*}
+  E_{AB}(P)&=(B-A)\times(P-A),\\
+  E_{BC}(P)&=(C-B)\times(P-B),\\
+  E_{CA}(P)&=(A-C)\times(P-C)
+\end{align*}
+
+とする。
+三角形全体の符号付き2倍面積を
+
+\[
+  S=(B-A)\times(C-A)
+\]
+
+とすれば、winding が一致している場合
+
+\begin{equation}
+  \boxed{
+    \alpha=\frac{E_{BC}(P)}{S},\qquad
+    \beta =\frac{E_{CA}(P)}{S},\qquad
+    \gamma=\frac{E_{AB}(P)}{S}
+  }
+\end{equation}
+
+となる。
+
+つまり rasterizer が三角形内部判定のためにすでに計算している3つの edge value は、
+そのまま barycentric weight の分子として再利用できる。
+例えば $E_{AB}$ は辺 $AB$ から点 $P$ までの符号付き面積を表し、
+$P=C$ なら三角形全体の面積 $S$ になるため $\gamma=1$、
+$P$ が辺 $AB$ 上なら $E_{AB}=0$ なので $\gamma=0$ になる。
+
+\subsection{Barycentric Interpolation と Depth Buffer}
+
+三角形の各頂点に値
+
+\[
+  f_A,\qquad f_B,\qquad f_C
+\]
+
+が与えられており、その値が三角形上で affine に変化するとき、点 $P$ の値は
+
+\begin{equation}
+  \boxed{
+    f(P)=\alpha f_A+\beta f_B+\gamma f_C
+  }
+\end{equation}
+
+で求められる。
+
+depth buffer では、Projection と perspective divide 後の各頂点の
+$z_{ndc}$ を保持しておき、screen-space の barycentric weight を使って
+
+\begin{equation}
+  z_P
+  =\alpha z_{A,ndc}
+  +\beta z_{B,ndc}
+  +\gamma z_{C,ndc}
+\end{equation}
+
+と補間する。
+現在の OpenGL 型 NDC では
+
+\[
+  \text{near}\rightarrow-1,
+  \qquad
+  \text{far}\rightarrow+1
+\]
+
+なので、小さい depth ほどカメラに近い。
+したがって pixel index $i$ に対して
+
+\begin{verbatim}
+if depth < z_buffer[i]:
+    z_buffer[i] = depth
+    frame_buffer[i] = color
+\end{verbatim}
+
+とすれば、最も手前の fragment だけを残せる。
+$z$ buffer は毎 frame、例えば $+\infty$ へ clear しておく。
+
+ここで補間するのは view-space の $z$ ではなく、perspective divide 後の
+$z_{ndc}$ であることに注意する。
+view-space の $z$ は透視投影後の screen space に対して線形ではない。
+
+一方、texture UV、view/world position、normal などの属性は、単純な screen-space
+barycentric interpolation だけでは透視投影と整合しない。
+これらには後で $1/w$ を使う perspective-correct interpolation が必要になる。
+
+\subsection{一般化: Simplex と凸性}
+
+barycentric coordinate は三角形だけの概念ではない。
+$d$ 次元では $d+1$ 個の affinely independent な点が作る
+\textbf{simplex} に対して同じ考え方を使える。
+
+\begin{center}
+\begin{tabular}{c|c|c}
+次元 & 頂点数 & simplex \\
+\hline
+1 & 2 & 線分 \\
+2 & 3 & 三角形 \\
+3 & 4 & 四面体
+\end{tabular}
+\end{center}
+
+例えば3次元の四面体では
+
+\[
+  P=\alpha A+\beta B+\gamma C+\delta D,
+  \qquad
+  \alpha+\beta+\gamma+\delta=1
+\]
+
+となり、4係数は一意に定まる。
+
+一方、2次元で4頂点を使うと未知係数が4つあるのに対し、
+$x,y$ と係数和の条件を合わせても式は3本しかないため、一般には重みは一意に定まらない。
+このため任意の四角形を1組の単純な barycentric weight だけで扱うことはできず、
+CG では三角形へ分割して各三角形ごとに barycentric coordinate を使う方法が自然になる。
+
+また、係数の和が1で全係数が非負な点全体は頂点集合の
+\textbf{convex hull（凸包）}になる。
+三角形は2次元の simplex であり、それ自身が凸なので、
+barycentric coordinate、inside 判定、補間、凸性がすべて同じ数学の上でつながっている。
+
 \end{document}

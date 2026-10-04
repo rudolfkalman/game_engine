@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026/Arch Linux)  (format=lualatex 2026.6.5)  29 SEP 2026 23:56
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026/Arch Linux)  (format=lualatex 2026.6.5)  4 OCT 2026 17:59
  restricted system commands enabled.
 **src/perspective_projection.tex
 (./src/perspective_projection.tex
@@ -1332,7 +1332,14 @@ LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
 (Font)              scaled to size 9.32104pt on input line 246.
 LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
 (Font)              scaled to size 6.65793pt on input line 246.
- [4] [5] [6] (./out/perspective_projection.aux)
+ [4] [5] [6]
+LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
+(Font)              scaled to size 11.09656pt on input line 471.
+(load cache: extra_lmmono10-regular.luc)
+LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
+(Font)              scaled to size 9.24713pt on input line 497.
+(load cache: extra_lmmono8-regular.luc) [7] [8] [9] [10] [11] [12] [13]
+(./out/perspective_projection.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -1345,35 +1352,39 @@ LaTeX Font Warning: Size substitutions with differences
 )
 
 Here is how much of LuaTeX's memory you used:
- 16864 strings out of 476076
+ 16882 strings out of 476076
  125244,794899 words of node,token memory allocated
- 1635 words of node memory still in use:
-   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 460 attribute, 54 glue_sp
-ec, 55 attribute_list, 2 write, 15 user_defined nodes
-   avail lists: 1:4,2:24552,3:624,4:345,5:180,6:37,7:2198,8:47,9:906,10:25,11:39
-
- 38794 multiletter control sequences out of 65536+600000
- 138 fonts using 109683935 bytes
+ 2643 words of node memory still in use:
+   11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 922 attribute, 54 glue_sp
+ec, 97 attribute_list, 2 write, 15 user_defined nodes
+   avail lists: 1:4,2:24048,3:624,4:345,5:310,6:63,7:3213,8:47,9:1117,10:25,11:8
+6
+ 38812 multiletter control sequences out of 65536+600000
+ 142 fonts using 110193887 bytes
  119i,12n,112p,2050b,930s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf></usr/share
-/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf></usr/share/texmf-dis
-t/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf></usr/share/texmf-d
-ist/fonts/opentype/public/lm/lmsans12-regular.otf></usr/share/texmf-dist/fonts/o
-pentype/public/lm/lmroman17-regular.otf></usr/share/texmf-dist/fonts/opentype/pu
-blic/haranoaji/HaranoAjiMincho-Regular.otf></usr/share/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
-usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmib10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy7.pfb>
-Output written on perspective_projection.pdf (6 pages, 174916 bytes).
+</usr/share/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf></usr/share/t
+exmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf></usr/share/texmf-dist/f
+onts/opentype/public/lm/lmroman9-regular.otf></usr/share/texmf-dist/fonts/openty
+pe/public/lm/lmroman10-regular.otf></usr/share/texmf-dist/fonts/opentype/public/
+haranoaji/HaranoAjiGothic-Medium.otf></usr/share/texmf-dist/fonts/opentype/publi
+c/lm/lmsans12-regular.otf></usr/share/texmf-dist/fonts/opentype/public/lm/lmroma
+n17-regular.otf></usr/share/texmf-dist/fonts/opentype/public/haranoaji/HaranoAji
+Mincho-Regular.otf></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.
+pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fo
+nts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on perspective_projection.pdf (13 pages, 269352 bytes).
 
-PDF statistics: 112 PDF objects out of 1000 (max. 8388607)
- 74 compressed objects within 1 object stream
+PDF statistics: 162 PDF objects out of 1000 (max. 8388607)
+ 107 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 1048576)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 
